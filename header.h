@@ -32,7 +32,7 @@ class oggetto {
 class spada:public oggetto{
     string affilatezza;
 public:
-    spada(){};//pure se non metto il costruttore vuoto È come se il codice dicesse "Costruisci prima líoggetto base con questi valori, poi costruisci la parte spada." al compilatore.Basta che metto il costruttore vuoto nella classe madre oggetto
+    spada(){};//pure se non metto il costruttore vuoto √© come se il codice dicesse "Costruisci prima l‚Äôoggetto base con questi valori, poi costruisci la parte spada." al compilatore.Basta che metto il costruttore vuoto nella classe madre oggetto
     spada(string nome,float peso,string materiale,string affilatezza):oggetto(nome,peso,materiale){
         this->affilatezza=affilatezza;
     }
@@ -62,6 +62,9 @@ public:
         }
 
 };
+
+
+
 
 class martello:public oggetto{
     string grandezza;//cura,danno,veleno
@@ -259,7 +262,7 @@ class giocatore {
     void set_n_ogg(int n_ogg){this->n_ogg=n_ogg;} //questo non mi serve perche parti con zero oggetti
     int get_n_ogg(){return n_ogg;}
     void AugNum_ogg(){n_ogg++;}  //aumenta solo di 1
-    //void AugNum_ogg(int quantita) {n_ogg += quantita;}//se voglio aumentare idi una certa quantit‡
+    //void AugNum_ogg(int quantita) {n_ogg += quantita;}//se voglio aumentare idi una certa quantit√†
     int get_num_ogg(){return n_ogg;}
 
     void aggiungi_oggetto(oggetto* ogg){//mi passa l'oggeto che io richiamo per riferimento quindi mi prende l'oggetto vero e proprio e non me lo copia
@@ -500,7 +503,7 @@ public:
         case 1:{
             cout<<"---storia Assassino---"<<endl;
             //storia
-
+            //1 SCELTA
             cout<<R"(sei un uomo di poche parole, un uomo senza passato, hai un lavoro semplice, entrare nel Dungeon, uccidere chiunque sia dentro, e portare il bottino a chi ti ha pagato, per iniziare scegli di portare...)"<<endl;
             cout<<"----------"<<endl;
             cout<<"scegli :"<<endl;
@@ -509,9 +512,7 @@ public:
             cout<<"----------"<<endl;
             cout<<"2)il tuo efficace coltello"<<endl;
             cout<<"----------"<<endl;
-
             cin>>choice;
-
 
             switch(choice){
                 case 1:{
@@ -531,9 +532,10 @@ public:
                     G[pos].stampa_inventario();
 
                     break;
+                }
             }
-
-            cout<<"R(Armi solite da sole non basteranno, quindi eí meglio portare anche qualche oggettoÖalternativo come...)"<<endl;
+            //2 SCELTA
+            cout<<"R(Armi solite da sole non basteranno, quindi e‚Äô meglio portare anche qualche oggetto‚Ä¶alternativo come...)"<<endl;
             cout<<"----------"<<endl;
             cout<<"scegli :"<<endl;
             cout<<"----------"<<endl;
@@ -545,7 +547,7 @@ public:
 
             switch(choice){
                 case 1:{
-                    cout<<R"( rumoroso, ma funzionale, ti saraí di uso, eí un po caotico, ma andraí bene)"<<endl;
+                    cout<<R"( rumoroso, ma funzionale, ti sara‚Äô di uso, e‚Äô un po caotico, ma andra‚Äô bene)"<<endl;
 
                     oggetto* b=new bomba("bomba",0.5,"polvere da sparo","alta");
                     G[pos].aggiungi_oggetto(b);
@@ -561,16 +563,77 @@ public:
                     break;
                 }
             }
+            //3 SCELTA
+            cout<<"R(e per finire il capolavoro...)"<<endl;
+            cout<<"----------"<<endl;
+            cout<<"scegli :"<<endl;
+            cout<<"----------"<<endl;
+            cout<<"1)pozione di salute"<<endl;
+            cout<<"----------"<<endl;
+            cout<<"2)un po‚Äô di pratica prima di andare"<<endl;
+            cout<<"----------"<<endl;
+            cin>>choice;
 
-            };
+            switch(choice){
+                case 1:{
+                    cout<<"-----"<<endl;
+                    cout<<"R(giusto in caso, e‚Äô sempre utile)"<<endl;
+                    cout<<"-----"<<endl;
+                    cout<<"Ottieni: pozione curativa."<<endl;//trova scopo sacchetto monete
+                    cout<<"-----"<<endl;
+
+                    oggetto* p=new pozione("pozione curativa",0.1,"vetro","curativo");
+                    G[pos].aggiungi_oggetto(p);
+                    G[pos].stampa_inventario();
+                break;
+                }
+                case 2:{
+                    cout<<"-----"<<endl;
+                    cout<<R"(meglio tenersi affilati quanto il proprio armamento‚Äù (+10 tutto))"<<endl;
+                    cout<<"-----"<<endl;
+                    cout<<"Ottieni: +10 ad ogni statistica."<<endl;//trova scopo sacchetto monete
+                    cout<<"-----"<<endl;
+
+                    app=G[pos].update_STR(STR_g,10);
+                    G[pos].set_STR(app);
+                    app=G[pos].update_DEX(DEX_g,10);
+                    G[pos].set_DEX(app);
+                    app=G[pos].update_HP(HP_g,10);
+                    G[pos].set_HP(app);
+                    app=G[pos].update_MP(MP_g,10);
+                    G[pos].set_MP(app);
+                    G[pos].stampa_character(DEX_g,STR_g,HP_g,MP_g);
+                break;
+                }
+            }
+            //4 SCELTA
+            cout<<"R(e cosi‚Äô sei arrivato, nessuna scelta oltre ad entrare in questo dungeoun)"<<endl;
+            cout<<"----------"<<endl;
+            cout<<"scegli :"<<endl;
+            cout<<"----------"<<endl;
+            cout<<"1)entra nel dungeoun"<<endl;
+            cout<<"----------"<<endl;
+            string choice2;
+            cin>>choice2;
+
+            if(choice2=="1"){
+            cout<<"----------"<<endl;
+            cout<<"R(cosi' inizia la tua avventura)"<<endl;
+            cout<<"----------"<<endl;
+            }
+            else if (choice2=="^^vv<><>ba"){
+                cout<<"prova a chiamarti carabiniere al inizio del gioco"<<endl;
+            }
+
             break;
-
         }
-        case 2:{
+        case 2:{//storia mago---------------
             cout<<"---storia Mago---"<<endl;
+
+
             //storia
             break;
-        }
+        }//------------------------------------------------------
         case 3:{
             cout<<"---storia Mercenario---"<<endl;//------------------------------------------------------------------------------------------------------
             //storia
@@ -621,7 +684,7 @@ public:
                                     break;
                     }
                         case 2:{
-                                cout<<R"(dopo aver preso lo spadino e il boccolino ti sei allenato ad usare queste armi di destrezza finche' non eri pi˘ piË lesto di Achille stesso, ti senti pronto per il tuo lavoro.)"<<endl;
+                                cout<<R"(dopo aver preso lo spadino e il boccolino ti sei allenato ad usare queste armi di destrezza finche' non eri pi√π pi√® lesto di Achille stesso, ti senti pronto per il tuo lavoro.)"<<endl;
                                 cout<<"-----"<<endl;
                                 cout<<"Ottieni: Spadino & Boccolino, giornea di cuoio, +10 DEX. "<<endl;
                                 cout<<"-----"<<endl;
@@ -638,7 +701,7 @@ public:
                                     break;
                     }
                         case 3:{
-                                cout<<R"(dopo aver preso líalabarda realizzi che questí arma eí al quanto ingombrante, la tua forza non Ë abbastanza per tenerla bene quindi ti alleni, ma non sei capace di essere lesto con un simile armamenti, in ogni caso sei pronto per il tuo lavoro.)"<<endl;
+                                cout<<R"(dopo aver preso l‚Äôalabarda realizzi che quest‚Äô arma e‚Äô al quanto ingombrante, la tua forza non √® abbastanza per tenerla bene quindi ti alleni, ma non sei capace di essere lesto con un simile armamenti, in ogni caso sei pronto per il tuo lavoro.)"<<endl;
                                 cout<<"-----"<<endl;
                                 cout<<"Ottieni: Alabarda, giornea di cuoio, +10 STR, -10 DEX. "<<endl;
                                 cout<<"-----"<<endl;
@@ -675,7 +738,7 @@ public:
 
                 }
                 //2nd scelta
-                cout<<R"(ti sono offerti 3 lavori che puoi fare, un nobile ti desidera come guardia del corpo nel suo viaggio verso una grande cittaí, la guarnigione locale vuole assumerti come guardia per non lasciare dei prigionieri fuggire e un cavaliere ti vuole come scudiero per la sua prossima avventura, decidi diÖ)"<<endl;
+                cout<<R"(ti sono offerti 3 lavori che puoi fare, un nobile ti desidera come guardia del corpo nel suo viaggio verso una grande citta‚Äô, la guarnigione locale vuole assumerti come guardia per non lasciare dei prigionieri fuggire e un cavaliere ti vuole come scudiero per la sua prossima avventura, decidi di‚Ä¶)"<<endl;
 
                 cout<<"scegli :"<<endl;
                 cout<<"----------"<<endl;
@@ -689,7 +752,7 @@ public:
 
                 switch(choice){
                     case 1:{
-                        cout<<R"(lavorare per il nobile, mentre viaggi con il nobile dei briganti fermano la vostra carovana, lo difendi lealmente ma vieni attaccato nel caos, il tuo tendone e stato tagliato rendendoti zoppo, il nobile eí fuggito e ti ha lasciato per morto, zoppichi a casa e ti prepari per un altro arduo giorno di lavoro)"<<endl;
+                        cout<<R"(lavorare per il nobile, mentre viaggi con il nobile dei briganti fermano la vostra carovana, lo difendi lealmente ma vieni attaccato nel caos, il tuo tendone e stato tagliato rendendoti zoppo, il nobile e‚Äô fuggito e ti ha lasciato per morto, zoppichi a casa e ti prepari per un altro arduo giorno di lavoro)"<<endl;
                         cout<<"-----"<<endl;
                         cout<<"Ottieni: -10HP, -25DEX. "<<endl;
                         cout<<"-----"<<endl;
@@ -703,7 +766,7 @@ public:
                     break;
                     }
                     case 2:{
-                        cout<<R"(ti arruoli nella guarnigione locale, ti eí data una nuova corazza, fai da guardia alla cella di un criminale ben conosciuto, non dormi per prevenire alcun tentativo di fuga e vieni pagato un modesto stipendio, dopo questa esperienza realizzi che essere una guardia non e' per te, ti prepari per un altro lavoro domani)"<<endl;
+                        cout<<R"(ti arruoli nella guarnigione locale, ti e‚Äô data una nuova corazza, fai da guardia alla cella di un criminale ben conosciuto, non dormi per prevenire alcun tentativo di fuga e vieni pagato un modesto stipendio, dopo questa esperienza realizzi che essere una guardia non e' per te, ti prepari per un altro lavoro domani)"<<endl;
                         cout<<"-----"<<endl;
                         cout<<"Ottieni: sacchetto di monete, corazza in maglia di ferro "<<endl;//trova scopo sacchetto monete
                         cout<<"-----"<<endl;
@@ -733,7 +796,7 @@ public:
                     }
                 }
                 //3nd scelta
-                cout<<R"(continui a fare lavori dopo lavori e diventi un mercenario al quanto famoso, alcuni vanno bene, altri no, ma in ogni caso, sei vivo, decidi di prendere il giorno libero per mettere la tua vita in ordine quindi decidi diÖ)"<<endl;
+                cout<<R"(continui a fare lavori dopo lavori e diventi un mercenario al quanto famoso, alcuni vanno bene, altri no, ma in ogni caso, sei vivo, decidi di prendere il giorno libero per mettere la tua vita in ordine quindi decidi di‚Ä¶)"<<endl;
 
                 cout<<"scegli :"<<endl;
                 cout<<"----------"<<endl;
@@ -763,7 +826,7 @@ public:
                         break;
                     }
                     case 2:{
-                        cout<<R"(passi il tempo ad allenarti, ormai ti viene naturale, non puoi fare altro che passare fluidamente da una mossa alla altra, cosi continui e continui, eí tutto cioí che conosci ormai, ti senti pronto alle tue prossime avventureÖ)"<<endl;
+                        cout<<R"(passi il tempo ad allenarti, ormai ti viene naturale, non puoi fare altro che passare fluidamente da una mossa alla altra, cosi continui e continui, e‚Äô tutto cio‚Äô che conosci ormai, ti senti pronto alle tue prossime avventure‚Ä¶)"<<endl;
                         cout<<"-----"<<endl;
                         cout<<"Ottieni: +10 ATK, +10 DEX."<<endl;//trova scopo sacchetto monete
                         cout<<"-----"<<endl;
@@ -777,7 +840,7 @@ public:
                         break;
                     }
                     case 3:{
-                        cout<<R"(trovi una bellissima corazza in acciaio e decidi di comprarla, ti senti piuí pronto alle tue prossime avventure...)"<<endl;
+                        cout<<R"(trovi una bellissima corazza in acciaio e decidi di comprarla, ti senti piu‚Äô pronto alle tue prossime avventure...)"<<endl;
                         cout<<"-----"<<endl;
                         cout<<"Ottieni: corazza in acciaio"<<endl;//trova scopo sacchetto monete
                         cout<<"-----"<<endl;
@@ -825,7 +888,7 @@ public:
                         oggetto* p=new pozione("pozione curativa",0.1,"vetro","curativo");
                         G[pos].aggiungi_oggetto(p);
                         G[pos].stampa_inventario();
-                        G[pos].stampa_character(DEX_g,STR_g,HP_g,MP_g);
+
                         cout<<"-----"<<endl;
                         cout<<"ti ritrovi davanti al Dudgeon, la tua avventura inizia"<<endl;
                         cout<<"-----"<<endl;
@@ -865,7 +928,7 @@ public:
             //storia
             break;
         }
-        }
+    }
 
     };
     giocatore get_giocatore(int pos){return G[pos];}
@@ -880,7 +943,7 @@ public:
     void Gioco(int pos){
         int sop=pos-1; //lo uso per riferirmi al giocatore 1
         cout<<"Comincia Il Combattimento"<<endl;
-        cout<<G[sop].get_DEX()<<endl;//la destrezza rimani cosi com'È non viene modificata
+        cout<<G[sop].get_DEX()<<endl;//la destrezza rimani cosi com'√© non viene modificata
         cout<<G[pos].get_DEX()<<endl;//perche al giocatore 2 ci sono valori sfasati? dovevamo mettere uno al posto di 2 nella funzione p.Gioco(1) dell int main
         //cout<<G[pos].get_STR()<<endl; per testare se era tutto ok
 
